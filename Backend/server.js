@@ -12,10 +12,12 @@ const PORT = process.env.PORT || 3000;
 const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:5173";
 
 const io = new Server(httpServer, {
-  cors: {
+ cors: {
     origin: CLIENT_URL,
-    methods: ["GET", "POST"]
-  }
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
+  transports: ["websocket", "polling"]
 });
 
 const chatHistory = [];
